@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>EventBusGraph</title>
+</head>
+<body style="font-family:'arial'">
+<script>
+    var mGraphsCount = 3;
+</script>
+    <script type="text/vnd.graphviz" id="graph_0">
+        digraph g {
+        graph [
+        rankdir = "LR"
+        ];
+        node [
+        fontsize = "10"
+        shape = "ellipse"
+        style = filled
+        fillcolor = lightgrey
+        fontname = arial
+        ];
+        edge [
+        ];
+        "node0" [
+        label = "<f3> Post | <f0> 1\\example\\MainActivity:45"
+        shape = "record"
+        style = filled
+        color = white
+        ];
+        "node1" [
+        label = "String"
+        shape = "ellipse"
+        style = filled
+        fillcolor = yellow
+        fontsize = "12"
+        ];
+        "node2" [
+        label = "<f3> onEvent | <f1> 1\\example\\MainActivity:50 | <f1> 2\\libsrc\\lib:7"
+        shape = "record"
+        style = filled
+        color = white
+        ];
+            "node0":f0 -> "node1";
+            "node1" -> "node2":f1;
+            }
+    </script>
+    <script type="text/vnd.graphviz" id="graph_1">
+        digraph g {
+        graph [
+        rankdir = "LR"
+        ];
+        node [
+        fontsize = "10"
+        shape = "ellipse"
+        style = filled
+        fillcolor = lightgrey
+        fontname = arial
+        ];
+        edge [
+        ];
+        "node0" [
+        label = "<f3> Post | <f0> 1\\example\\MainActivity:46"
+        shape = "record"
+        style = filled
+        color = white
+        ];
+        "node1" [
+        label = "FirstEvent"
+        shape = "ellipse"
+        style = filled
+        fillcolor = yellow
+        fontsize = "12"
+        ];
+        "node2" [
+        label = "<f3> onEvent | <f1> 1\\example\\MainActivity:55"
+        shape = "record"
+        style = filled
+        color = white
+        ];
+            "node0":f0 -> "node1";
+            "node1" -> "node2":f1;
+            }
+    </script>
+    <script type="text/vnd.graphviz" id="graph_2">
+        digraph g {
+        graph [
+        rankdir = "LR"
+        ];
+        node [
+        fontsize = "10"
+        shape = "ellipse"
+        style = filled
+        fillcolor = lightgrey
+        fontname = arial
+        ];
+        edge [
+        ];
+        "node0" [
+        label = "<f3> Post | <f0> 1\\example\\MainActivity:47"
+        shape = "record"
+        style = filled
+        color = white
+        ];
+        "node1" [
+        label = "SecondEvent"
+        shape = "ellipse"
+        style = filled
+        fillcolor = yellow
+        fontsize = "12"
+        ];
+        "node2" [
+        label = "<f3> onEvent | <f1> 1\\example\\MainActivity:60 | <f1> 1\\example\\MainActivity:65 (MainThread) | <f1> 1\\example\\MainActivity:70 (BackgroundThread) | <f1> 1\\example\\MainActivity:75 (Async)"
+        shape = "record"
+        style = filled
+        color = white
+        ];
+            "node0":f0 -> "node1";
+            "node1" -> "node2":f1;
+            }
+    </script>
+<script src="viz.js"></script>
+<script>
+    function src(id) {
+        return document.getElementById(id).innerHTML;
+    }
+    document.body.innerHTML += "<h1>EventBusGraph</h1>"
+    document.body.innerHTML += "<font style=\"font-size:16px;font-weight:bold;color:#3333AA;\">1) ./src/com/neterra</font><br>"
+    document.body.innerHTML += "<font style=\"font-size:16px;font-weight:bold;color:#3333AA;\">2) ./libsrc/com/neterra</font><br>"
+    document.body.innerHTML += "<br><hr>"
+    for (i = 0; i < mGraphsCount; i++) {
+      result = Viz(src('graph_' + i), format="svg", engine="dot", options=null);
+      if (i < (mGraphsCount - 1)) {
+        document.body.innerHTML += result + "<br><br><hr><br>";
+      } else {
+        document.body.innerHTML += result + "<br><br><br>";
+      }
+}
+</script>
+</body>
+</html>
